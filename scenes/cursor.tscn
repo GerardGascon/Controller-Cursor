@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dixxiuird1xui"]
+
+[ext_resource type="Script" path="res://Cursor.cs" id="1_14ubk"]
+[ext_resource type="Texture2D" uid="uid://424smqblne3o" path="res://scenes/cursor@2x.png" id="1_oj55d"]
+
+[node name="Window" type="Window" node_paths=PackedStringArray("sprite2D")]
+transparent_bg = true
+initial_position = 1
+size = Vector2i(256, 256)
+borderless = true
+always_on_top = true
+transparent = true
+script = ExtResource("1_14ubk")
+sprite2D = NodePath("Node2D/Sprite2D")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(128, 128)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_oj55d")
