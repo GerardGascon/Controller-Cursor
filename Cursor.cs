@@ -21,26 +21,32 @@ public partial class Cursor : Sprite2D {
 	}
 
 	public override void _Process(double delta) {
-		if (_visible) {
-			if (!_wasVisible) {
-				Visible = true;
-
-				ResetJoyconRotation();
-			}
-			_wasVisible = true;
-		} else {
-			if (_wasVisible)
-				Visible = false;
-
-			_wasVisible = false;
+		if (ManageVisibility())
 			return;
-		}
 
 		Rotation = -_joyconRotation.GetEuler().Z;
 
 		Vector3? intersection = Intersect();
 		if (intersection != null)
 			Position = initialPosition + new Vector2(intersection.Value.X, -intersection.Value.Y);
+	}
+
+	private bool ManageVisibility() {
+		if (!_visible) {
+			if (_wasVisible)
+				Visible = false;
+
+			_wasVisible = false;
+			return true;
+		}
+
+		if (!_wasVisible) {
+			Visible = true;
+			ResetJoyconRotation();
+		}
+
+		_wasVisible = true;
+		return false;
 	}
 
 	private Vector3? Intersect() {
