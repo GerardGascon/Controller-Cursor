@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿#if GODOT_WINDOWS
+using System.Runtime.InteropServices;
 
 namespace ControllerCursor.Win32Api;
 
@@ -8,3 +9,4 @@ public struct InputUnion {
 	[FieldOffset(0)] public KeyboardInput ki;
 	[FieldOffset(0)] public HardwareInput hi;
 }
+#endif

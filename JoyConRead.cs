@@ -14,7 +14,7 @@ using Environment = System.Environment;
 
 namespace ControllerCursor;
 
-public class JoyConRead : IGamepadReader {
+public class JoyConRead {
 	public event Action NextSlide;
 	public event Action PrevSlide;
 

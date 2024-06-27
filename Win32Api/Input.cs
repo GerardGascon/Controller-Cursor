@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿#if GODOT_WINDOWS
+using System.Runtime.InteropServices;
 
 namespace ControllerCursor.Win32Api;
 
@@ -7,3 +8,4 @@ public struct Input {
 	public uint type;
 	public InputUnion u;
 }
+#endif

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if GODOT_WINDOWS
+using System;
 using System.Runtime.InteropServices;
 
 namespace ControllerCursor.Win32Api;
@@ -12,3 +13,4 @@ public struct MouseInput {
 	public uint time;
 	public IntPtr dwExtraInfo;
 }
+#endif

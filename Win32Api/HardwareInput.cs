@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿#if GODOT_WINDOWS
+using System.Runtime.InteropServices;
 
 namespace ControllerCursor.Win32Api;
 
@@ -8,3 +9,4 @@ public struct HardwareInput {
 	public ushort wParamL;
 	public ushort wParamH;
 }
+#endif
