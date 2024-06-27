@@ -18,8 +18,8 @@ public class JoyConRead {
 	public event Action NextSlide;
 	public event Action PrevSlide;
 
-	private CalibrationData _calibration;
-	private ImuReport _imuReport;
+	private CalibrationData? _calibration;
+	private ImuReport? _imuReport;
 	private bool visibility;
 
 	private bool wasPrevPressed;
@@ -108,7 +108,7 @@ public class JoyConRead {
 	}
 
 	public Vector3 GetRotationalInput(double deltaTime) {
-		if (_calibration.ImuCalibration == null)
+		if (_calibration?.ImuCalibration == null || _imuReport == null)
 			return Vector3.Zero;
 
 		ImuFrameCalibrated calibratedImu = _imuReport.Frames[0].GetCalibrated(_calibration.ImuCalibration);

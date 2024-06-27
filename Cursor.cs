@@ -17,8 +17,6 @@ public partial class Cursor : Sprite2D {
 		Position = GetViewportRect().Size / 2;
 		initialPosition = Position;
 		Visible = false;
-
-		Intersect();
 	}
 
 	public override void _Process(double delta) {
