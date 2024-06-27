@@ -42,11 +42,7 @@ public partial class Cursor : Sprite2D {
 	}
 
 	private void UpdateClickPolygon() {
-		Vector2[] clickPolygonPoints = clickPolygon.Polygon;
-		for (int i = 0; i < clickPolygonPoints.Length; i++)
-			clickPolygonPoints[i] = ToGlobal(clickPolygonPoints[i]);
-
-		GetWindow().MousePassthroughPolygon = clickPolygonPoints;
+		GetWindow().MousePassthroughPolygon = System.Array.Empty<Vector2>();
 	}
 
 	private bool ManageVisibility() {

@@ -52,9 +52,6 @@ public class JoyConRead {
 		};
 
 		GD.Print("JoyCon ready for presenting.");
-		// while (true) {
-		// 	await Task.Yield();
-		// }
 	}
 
 	private static async Task LogDeviceInfo(JoyCon joycon) {
