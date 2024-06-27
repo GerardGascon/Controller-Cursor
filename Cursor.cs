@@ -42,7 +42,7 @@ public partial class Cursor : Sprite2D {
 
 		if (!_wasVisible) {
 			Visible = true;
-			ResetJoyconRotation();
+			_joyconRotation = Quaternion.Identity;
 		}
 
 		_wasVisible = true;
@@ -50,15 +50,11 @@ public partial class Cursor : Sprite2D {
 	}
 
 	private Vector3? Intersect() {
-		Plane plane = new(new Vector3(0, 0, 1));
+		Plane plane = new(Vector3.Back);
 		Vector3 rayOrigin = new(0, 0, distance);
 
 		Vector3? intersection = plane.IntersectsRay(rayOrigin, _joyconRotation * Vector3.Forward);
 		return intersection;
-	}
-
-	private void ResetJoyconRotation() {
-		_joyconRotation = new Quaternion(0, 0, 0, 1);
 	}
 
 	public void SetRotationalInput(Vector3 rotation) {
