@@ -9,6 +9,7 @@ public partial class Cursor : Sprite2D {
 	private bool _visible;
 
 	[Export] private float distance = 10;
+	[Export] private CollisionPolygon2D clickPolygon;
 
 	private Quaternion _joyconRotation;
 
@@ -21,14 +22,33 @@ public partial class Cursor : Sprite2D {
 	}
 
 	public override void _Process(double delta) {
-		if (ManageVisibility())
+		if (ManageVisibility()) {
+			RemoveWindowInteractability();
 			return;
+		}
+
+		UpdateClickPolygon();
 
 		Rotation = -_joyconRotation.GetEuler().Z;
 
 		Vector3? intersection = Intersect();
 		if (intersection != null)
 			Position = initialPosition + new Vector2(intersection.Value.X, -intersection.Value.Y);
+	}
+
+	private void RemoveWindowInteractability() {
+		GetWindow().MousePassthroughPolygon = new[] {
+			Vector2.Zero,
+			Vector2.Zero,
+		};
+	}
+
+	private void UpdateClickPolygon() {
+		Vector2[] clickPolygonPoints = clickPolygon.Polygon;
+		for (int i = 0; i < clickPolygonPoints.Length; i++)
+			clickPolygonPoints[i] = ToGlobal(clickPolygonPoints[i]);
+
+		GetWindow().MousePassthroughPolygon = clickPolygonPoints;
 	}
 
 	private bool ManageVisibility() {
