@@ -27,9 +27,10 @@ public class JoyConRead {
 
 	public async Task Read() {
 		HidDevice? device = GetHidDevice();
-		if (device == null) {
-			GD.PrintErr("No controller. Please connect Joy-Con via Bluetooth.");
-			return;
+		while (device == null) {
+			GD.PrintErr("No controller. Please connect Joy-Con via Bluetooth. Retrying...");
+			device = GetHidDevice();
+			await Task.Delay(1000);
 		}
 		JoyCon joycon = new(device);
 		joycon.Start();

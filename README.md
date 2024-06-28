@@ -9,5 +9,5 @@ Moving the [Controller Slide Presenter](https://github.com/GerardGascon/Controll
   - [x] Windows
   - [ ] Mac
   - [ ] Linux
-- [ ] Add ability to retry connection when the joycon is disconnected
+- [x] Add ability to retry connection when the joycon is disconnected
 - [ ] Log status information when no joycon connected on build
