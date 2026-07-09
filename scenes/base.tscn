@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmnj6ftaone7m"]
+[gd_scene load_steps=4 format=3 uid="uid://dmnj6ftaone7m"]
 
 [ext_resource type="Script" path="res://JoyConReader.cs" id="1_46xv5"]
-[ext_resource type="PackedScene" uid="uid://cvd4joqv5d7wi" path="res://assets/pointer.tscn" id="2_wxxe5"]
+[ext_resource type="Script" path="res://Cursor.cs" id="2_m0ky6"]
+[ext_resource type="Texture2D" uid="uid://424smqblne3o" path="res://scenes/cursor@2x.png" id="2_q1qc6"]
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("_window")]
 script = ExtResource("1_46xv5")
-_window = NodePath("Pointer")
+_window = NodePath("Cursor")
 
-[node name="Pointer" parent="." instance=ExtResource("2_wxxe5")]
+[node name="Cursor" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_q1qc6")
+script = ExtResource("2_m0ky6")
+distance = 2000.0

@@ -9,7 +9,6 @@ public partial class Cursor : Sprite2D {
 	private bool _visible;
 
 	[Export] private float distance = 10;
-	[Export] private CollisionPolygon2D clickPolygon;
 
 	private Quaternion _joyconRotation;
 

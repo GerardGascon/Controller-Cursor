@@ -17,6 +17,7 @@ namespace ControllerCursor;
 public class JoyConRead {
 	public event Action NextSlide;
 	public event Action PrevSlide;
+	public event Action SwitchScreen;
 
 	private CalibrationData? _calibration;
 	private ImuReport? _imuReport;
@@ -24,6 +25,8 @@ public class JoyConRead {
 
 	private bool wasPrevPressed;
 	private bool wasNextPressed;
+
+	private bool wasSwitchScreenPressed;
 
 	public async Task Read() {
 		HidDevice? device = GetHidDevice();
@@ -83,6 +86,8 @@ public class JoyConRead {
 		bool prev = PreviousPressed(j.Buttons);
 		bool next = NextPressed(j.Buttons);
 
+		bool switchScreen = j.Buttons.X;
+
 		_imuReport = j.Imu;
 
 		visibility = j.Buttons.Y;
@@ -92,8 +97,13 @@ public class JoyConRead {
 		if (next && !wasNextPressed)
 			NextSlide?.Invoke();
 
+		if (switchScreen && !wasSwitchScreenPressed)
+			SwitchScreen?.Invoke();
+
 		wasPrevPressed = prev;
 		wasNextPressed = next;
+
+		wasSwitchScreenPressed = switchScreen;
 
 		return Task.CompletedTask;
 	}

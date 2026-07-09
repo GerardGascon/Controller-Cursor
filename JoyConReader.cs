@@ -9,10 +9,12 @@ public partial class JoyConReader : Node {
 	private SlideSwitcher _switcher;
 
 	private Quaternion rotation = new(0, 0, 0, 1);
+	private ScreenSwitcher _screenSwitcher;
 
 	public override async void _Ready() {
 		_reader = new JoyConRead();
 		_switcher = new SlideSwitcher(_reader);
+		_screenSwitcher = new ScreenSwitcher(_reader, GetWindow());
 		await _reader.Read();
 	}
 
@@ -23,5 +25,6 @@ public partial class JoyConReader : Node {
 
 	public override void _ExitTree() {
 		_switcher.Dispose();
+		_screenSwitcher.Dispose();
 	}
 }
