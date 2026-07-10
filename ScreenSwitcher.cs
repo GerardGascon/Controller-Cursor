@@ -10,14 +10,11 @@ public class ScreenSwitcher : IDisposable {
 	public ScreenSwitcher(JoyConRead reader, Window window) {
 		_reader = reader;
 		_window = window;
-		_reader.SwitchScreen += SwitchScreen;
 	}
 
-	public void Dispose() {
-		_reader.SwitchScreen -= SwitchScreen;
-	}
+	public void Dispose() { }
 
-	private void SwitchScreen() {
-		_window.CurrentScreen = Mathf.Clamp(_window.CurrentScreen + 1, 0, DisplayServer.GetScreenCount() - 1);
+	public void SwitchScreen() {
+		_window.CurrentScreen = (_window.CurrentScreen + 1) % DisplayServer.GetScreenCount();
 	}
 }

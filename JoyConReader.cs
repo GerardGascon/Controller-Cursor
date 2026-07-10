@@ -15,6 +15,7 @@ public partial class JoyConReader : Node {
 		_reader = new JoyConRead();
 		_switcher = new SlideSwitcher(_reader);
 		_screenSwitcher = new ScreenSwitcher(_reader, GetWindow());
+		_reader.SwitchScreen += SwitchScreen;
 		await _reader.Read();
 	}
 
@@ -26,5 +27,13 @@ public partial class JoyConReader : Node {
 	public override void _ExitTree() {
 		_switcher.Dispose();
 		_screenSwitcher.Dispose();
+	}
+
+	private void SwitchScreen() {
+		CallDeferred(nameof(SwitchScreenInternal));
+	}
+
+	private void SwitchScreenInternal() {
+		_screenSwitcher.SwitchScreen();
 	}
 }
